@@ -3,13 +3,11 @@
 * [Introduction](README.md)
 * [Conventions](conventions.md)
 
-## The key principles <a id="key-principles"></a>
+## The key principles <a href="#key-principles" id="key-principles"></a>
 
+* [Naming Matters](key-principles/naming-matters.md)
 * [Meaningful Names](key-principles/meaningful-names.md)
-* [Functions](key-principles/functions.md)
+* [Methods (Functions)](key-principles/functions.md)
 * [Classes](key-principles/classes.md)
 * [Comments](key-principles/comments.md)
 * [Formatting](key-principles/formatting.md)
-* [Error Handling](key-principles/error-handling.md)
-* [Unit Tests](key-principles/unit-tests.md)
-
