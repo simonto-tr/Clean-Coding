@@ -75,27 +75,45 @@ A better solution is to create a class named Address. If you need to differentia
 
 
 
-## Methods should have verb names
+## Methods should have verb names and should say it all
 
 {% hint style="success" %}
-function postPayment()\
-function deletePage()\
-function save()
+GetRegisteredUsers
+
+IsValidSubmission
+
+ImportDocument
+
+Send Email
 {% endhint %}
 
 ## Classes should have noun names
 
 {% hint style="success" %}
-class Customer\
-class WikiPage\
-class Account
+Customer\
+WikiPage\
+Account
+
+User\
+QueryBuilder
+
+ProductRepository
 {% endhint %}
 
 ## Avoid words (in the name of a class)
 
 {% hint style="danger" %}
-Manager\
-Processor\
-Data\
-Info
+WebsiteBO\
+Utility\
+Common
+{% endhint %}
+
+## Avoid Side Effects
+
+{% hint style="danger" %}
+CheckPassword shouldn't log users out.\
+ValidateSubmission shouldn't save\
+GetUser shouldn't create their session.
+
+ChargeCreditCard shouldn't send emails
 {% endhint %}
