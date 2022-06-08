@@ -6,15 +6,11 @@ Rather than spend your time writing the comments that explain the mess you’ve 
 
 {% hint style="danger" %}
 ```php
-// Check to see if the employee is eligible for full benefits  
-
-if ($employee->flag && ($employee->age > 65))
 ```
 {% endhint %}
 
 {% hint style="success" %}
 ```php
-if ($employee->isEligibleForFullBenefits())
 ```
 {% endhint %}
 
@@ -24,10 +20,6 @@ A comment is redundant if it describes something that adequately describes itsel
 
 {% hint style="danger" %}
 ```php
-// create directory recursively and save file content  
-
-mkdir($uploadDirectory, 0777, true);  
-file_put_contents($uploadDirectory.'/'.$filename, $content));
 ```
 {% endhint %}
 
@@ -37,14 +29,6 @@ It is just plain silly to have a rule that says that every function and variable
 
 {% hint style="danger" %}
 ```php
-/**
- * Returns the static model of the specified AR class.
- * @return Order the static model class
- */
-public static function model($className=__CLASS__)
-{
-    return parent::model($className);
-}
 ```
 {% endhint %}
 
@@ -54,14 +38,6 @@ Noise comments restate the obvious and provide no new information.
 
 {% hint style="danger" %}
 ```php
-/**
- * Check whether it is automated request
- * @return boolean whether it is automated request
- */
-public function isAutoRequest(): bool
-{
-    return isset($_REQUEST['VK_AUTO']) && $_REQUEST['VK_AUTO'] == 'Y';
-}
 ```
 {% endhint %}
 
@@ -71,11 +47,6 @@ If you find yourself wanting to mark your closing braces, try to shorten your fu
 
 {% hint style="danger" %}
 ```php
-        $newline .= $c;
-    } // end of for
-    $output .= $newline . $eol;
-} // end of while
-return $output;
 ```
 {% endhint %}
 
@@ -85,13 +56,6 @@ There are rare times when they make sense, but in general they are clutter that 
 
 {% hint style="danger" %}
 ```php
-/////////////////////////////////////////////////
-// PROPERTIES, PRIVATE AND PROTECTED
-/////////////////////////////////////////////////
-
-private $smtp_conn;
-private $error;
-private $helo_rply;
 ```
 {% endhint %}
 
@@ -101,15 +65,6 @@ It makes the comments hard to read in the one place where they should be easy to
 
 {% hint style="danger" %}
 ```php
-/**
- * To use this widget, you may insert the following code in a view:
- * <pre>
- * $this->widget('ext.widgets.password.XPasswordStrength', [
- *     'model' => $model,
- *     'attribute' => 'password'
- * ]);
- * </pre>
- */
 ```
 {% endhint %}
 
@@ -119,14 +74,6 @@ Nowadays we have source code control systems that does it for us.
 
 {% hint style="danger" %}
 ```php
-/**
- * 2016-03-19
- * New Method {@link  getReturnUrlRoute()}
- * New Method {@link  getReturn2Url()}
- * Updated Method {@link  getReturnUrl()}
- *
- * @author Erik Uus <erik.uus@gmail.com>
- */
 ```
 {% endhint %}
 
@@ -149,7 +96,5 @@ If you must write a comment, then make sure it describes the code it appears nea
 
 {% hint style="danger" %}
 ```php
-// Port on which app would run defaults to 8082
 ```
 {% endhint %}
-
