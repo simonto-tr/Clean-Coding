@@ -6,11 +6,6 @@ Consider a class that compiles and prints a report. Such a class can be changed 
 
 {% hint style="danger" %}
 ```php
-interface Report
-{
-    public function compile(): self;
-    public function printout(): string;
-}
 ```
 {% endhint %}
 
@@ -20,51 +15,11 @@ Classes should have a small number of instance variables. The more variables a m
 
 {% hint style="danger" %}
 ```php
-class Person
-{
-    public $givenName;
-    public $familyName;
-    public $street;
-    public $city;
-    public $state;
-
-    public function getFullName()
-    {
-        return $this->givenName.' '.$this->familyName;
-    }    
-
-    public function getFullAddress()
-    {
-        return $this->street.', '.$this->city.', '.$this->state;   
-    }
-}
 ```
 {% endhint %}
 
 {% hint style="success" %}
 ```php
-class Name
-{
-    public $givenName;
-    public $familyName;
-
-    public function getFullName()
-    {
-        return $this->givenName.' '.$this->familyName;
-    }
-}
-
-class Address
-{
-    public $street;
-    public $city;
-    public $state;
-
-    public function getFullAddress()
-    {
-        return $this->street.', '.$this->city.', '.$this->state;       
-    }
-}
 ```
 {% endhint %}
 
@@ -79,40 +34,11 @@ The Law of Demeter says that a method _f_ of a class _C_ should only call the me
 
 {% hint style="success" %}
 ```php
-class CommentRepository extends Repository
-{
-    public function getReader(): DataReaderInterface
-    {
-        $sort = $this->getSort(); // rule 1
-        return (new EntityReader())->withSort($sort); // rule 2
-    }
-
-    private function getSort(): Sort
-    {
-        return Sort::only(['id', 'created_at', 'post_id', 'user_id'])
-            ->withOrder(['id' => 'asc']);
-    }
-}
 ```
 {% endhint %}
 
 {% hint style="success" %}
 ```php
-class Context
-{
-    private TaxCalculator $taxCalculator;
-
-    public function __construct(TaxCalculator $taxCalculator)
-    {
-        $this->taxCalculator = $taxCalculator;
-    }
-
-    public function calculateProduct(Product $product): void
-    {
-        $taxes = $this->taxCalculator->calculate($product); // rule 3
-        $product->setTaxes($taxes); // rule 4
-    }
-}
 ```
 {% endhint %}
 
@@ -122,20 +48,11 @@ Abstraction gives the freedom to change implementation.
 
 {% hint style="danger" %}
 ```php
-interface Vehicle 
-{
-    public function getFuelTankCapacityInGallons(): float;
-    public function getGallonsOfGasoline(): float;
-}
 ```
 {% endhint %}
 
 {% hint style="success" %}
 ```php
-interface Vehicle 
-{
-    public function getPercentFuelRemaining(): float;
-}
 ```
 {% endhint %}
 
@@ -145,49 +62,11 @@ Incorporate new features by extending the class, not by making modifications to 
 
 {% hint style="danger" %}
 ```php
-class SqlCommand 
-{
-    protected $tableName;
-    protected $columns;
-
-    public function __construct(string $tableName, array $columns)
-    {
-        $this->tableName = $tableName;
-        $this->columns = $columns;
-    }
-
-    public function insert(): string { }
-
-    public function select(): string { }
-}
 ```
 {% endhint %}
 
 {% hint style="success" %}
 ```php
-abstract class SqlCommand 
-{
-    protected $tableName;
-    protected $columns;
-
-    public function __construct(string $tableName, array $columns)
-    {
-        $this->tableName = $tableName;
-        $this->columns = $columns;
-    }
-
-    abstract public function generate(): string;
-}
-
-class InsertCommand extends SqlCommand 
-{
-    public function generate(): string { }
-}
-
-class SelectCommand extends SqlCommand
-{
-    public function generate(): string { }
-}
 ```
 {% endhint %}
 
@@ -197,50 +76,5 @@ Create separate objects that contain the business rules. Data structures expose 
 
 {% hint style="success" %}
 ```php
-class Comment
-{
-    private $id;
-    private $author;
-    private $text;
-    private $createdAt;
-    private $image;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(string $author): self
-    {
-        $this->author = $author;
-        return $this;
-    }
-
-    /* and so on */
-}
-
-class CommentRepository extends ServiceEntityRepository
-{
-    public const PAGINATOR_PER_PAGE = 2;
-
-    public function getPaginator(Image $image, int $offset): Paginator
-    {
-        $query = $this->createQueryBuilder('c')
-            ->andWhere('c.image = :image')
-            ->setParameter('image', $image)
-            ->orderBy('c.createdAt', 'DESC')
-            ->setMaxResults(self::PAGINATOR_PER_PAGE)
-            ->setFirstResult($offset)
-            ->getQuery()
-        ;
-
-        return new Paginator($query);
-    }
-}
 ```
 {% endhint %}
